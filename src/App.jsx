@@ -77,7 +77,7 @@ function App() {
       alert("Browser does not support Speech Recognition. Please use Chrome.");
       return;
     }
-    
+
     // Stop speaking if currently speaking
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
@@ -114,7 +114,7 @@ function App() {
   }
 
   return (
-    <div style={{ 
+    <div style={{
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
@@ -122,9 +122,9 @@ function App() {
       boxSizing: 'border-box',
       position: 'relative'
     }}>
-      
+
       {/* Theme Toggle */}
-      <button 
+      <button
         onClick={toggleTheme}
         style={{
           position: 'absolute',
@@ -159,43 +159,43 @@ function App() {
         )}
       </button>
 
-      <h1 style={{ 
-        color: 'var(--accent)', 
-        fontSize: '2.5rem', 
-        fontWeight: 'bold', 
+      <h1 style={{
+        color: 'var(--accent)',
+        fontSize: '2.5rem',
+        fontWeight: 'bold',
         marginBottom: '10px',
         textShadow: '0 0 20px var(--glass-border)'
       }}>
         🌾 Agri-Dost Mentor
       </h1>
       <p style={{ color: 'var(--text-muted)', marginBottom: '30px', fontSize: '1.1rem' }}>Tap the Orb to Speak</p>
-      
+
       <BioSphere loading={loading} isListening={isListening} onClick={startListening} />
-      
+
       <ActionCards />
-      
-      <div style={{ 
-        background: 'var(--glass-bg)', 
+
+      <div style={{
+        background: 'var(--glass-bg)',
         backdropFilter: 'blur(10px)',
         WebkitBackdropFilter: 'blur(10px)',
         border: '1px solid var(--glass-border)',
-        padding: '30px', 
-        borderRadius: '24px', 
-        boxShadow: '0 20px 40px var(--glass-shadow)', 
-        maxWidth: '500px', 
+        padding: '30px',
+        borderRadius: '24px',
+        boxShadow: '0 20px 40px var(--glass-shadow)',
+        maxWidth: '500px',
         width: '100%',
         marginTop: '20px'
       }}>
-        <div style={{ 
-          minHeight: '80px', 
-          display: 'flex', 
-          alignItems: 'center', 
+        <div style={{
+          minHeight: '80px',
+          display: 'flex',
+          alignItems: 'center',
           justifyContent: 'center',
           marginBottom: '24px'
         }}>
-          <p style={{ 
-            fontSize: '1.15rem', 
-            color: 'var(--text-main)', 
+          <p style={{
+            fontSize: '1.15rem',
+            color: 'var(--text-main)',
             lineHeight: '1.6',
             fontWeight: '400'
           }}>
@@ -203,17 +203,17 @@ function App() {
             {loading && <span style={{ animation: 'pulse 1s infinite' }}>...</span>}
           </p>
         </div>
-        
-        <input 
-          type="text" 
-          value={input} 
+
+        <input
+          type="text"
+          value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Sawaal likhein ya Orb ko tap karein..."
-          style={{ 
-            width: '100%', 
-            padding: '16px', 
-            borderRadius: '12px', 
-            border: '1px solid var(--glass-border)', 
+          style={{
+            width: '100%',
+            padding: '16px',
+            borderRadius: '12px',
+            border: '1px solid var(--glass-border)',
             backgroundColor: 'var(--input-bg)',
             color: 'var(--text-main)',
             fontSize: '1rem',
@@ -226,18 +226,18 @@ function App() {
           onBlur={(e) => e.target.style.borderColor = 'var(--glass-border)'}
         />
 
-        <button 
+        <button
           onClick={() => askGemini()}
           disabled={loading || isListening}
-          style={{ 
-            width: '100%', 
-            padding: '16px', 
-            borderRadius: '12px', 
-            backgroundColor: loading ? 'var(--accent-hover)' : 'var(--accent)', 
-            color: '#fff', 
-            border: 'none', 
+          style={{
+            width: '100%',
+            padding: '16px',
+            borderRadius: '12px',
+            backgroundColor: loading ? 'var(--accent-hover)' : 'var(--accent)',
+            color: '#fff',
+            border: 'none',
             fontSize: '1.1rem',
-            fontWeight: '600', 
+            fontWeight: '600',
             cursor: loading ? 'wait' : 'pointer',
             transition: 'all 0.3s ease',
             boxShadow: loading ? 'none' : '0 4px 15px var(--glass-border)'
@@ -248,7 +248,7 @@ function App() {
           {loading ? "Soch raha hoon..." : "Sawaal Poochein 🎤"}
         </button>
       </div>
-      
+
       <Ticker />
     </div>
   )
