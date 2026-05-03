@@ -12,8 +12,8 @@ function App() {
 
   const typewriterRef = useRef(null)
 
-  // NOTE: You will update this URL after Phase 4 deployment
-  const BACKEND_URL = "https://your-cloud-run-url.a.run.app/chat"
+  // URL loaded from .env file
+  const BACKEND_URL = `${import.meta.env.VITE_BACKEND_URL}/chat`
 
   useEffect(() => {
     document.body.setAttribute('data-theme', theme)
