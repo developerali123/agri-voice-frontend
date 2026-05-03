@@ -24,23 +24,25 @@ function App() {
   }
 
   const playTypewriter = (text) => {
+    const safeText = text ? String(text) : '';
     if (typewriterRef.current) clearInterval(typewriterRef.current);
     setOutput('');
     let i = 0;
     typewriterRef.current = setInterval(() => {
-      setOutput(prev => prev + text.charAt(i));
+      setOutput(prev => prev + safeText.charAt(i));
       i++;
-      if (i >= text.length) {
+      if (i >= safeText.length) {
         clearInterval(typewriterRef.current);
       }
     }, 30); // 30ms per character
   }
 
   const speakText = (text) => {
+    const safeText = text ? String(text) : '';
     if ('speechSynthesis' in window) {
       // Cancel any ongoing speech
       window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
+      const utterance = new SpeechSynthesisUtterance(safeText);
       // Optional: adjust voice/rate for natural calm voice
       utterance.rate = 0.95;
       utterance.pitch = 1.0;
@@ -58,8 +60,9 @@ function App() {
         body: JSON.stringify({ message: textToSend })
       })
       const data = await response.json()
-      playTypewriter(data.reply);
-      speakText(data.reply);
+      const replyText = data.reply || data.response || data.message || "Backend se koi jawab nahi aaya.";
+      playTypewriter(replyText);
+      speakText(replyText);
     } catch (error) {
       const errorMsg = "Maaf kijie, connection ka masla hai. Dobara koshish karein.";
       playTypewriter(errorMsg);
