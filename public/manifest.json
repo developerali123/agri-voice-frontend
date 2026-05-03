@@ -1,0 +1,21 @@
+{
+  "short_name": "Agri-Dost",
+  "name": "Agri-Dost Mentor PWA",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512"
+    },
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#0a0f12",
+  "display": "standalone",
+  "theme_color": "#10b981",
+  "description": "Your AI Agricultural Assistant"
+}

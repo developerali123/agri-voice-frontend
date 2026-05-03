@@ -1,0 +1,123 @@
+.action-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  width: 100%;
+  max-width: 900px;
+  margin: 10px auto 30px auto;
+  box-sizing: border-box;
+}
+
+.glass-card {
+  position: relative;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+  box-shadow: 0 10px 30px var(--glass-shadow);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+  cursor: pointer;
+  
+  /* Initial state for stagger animation */
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.glass-card.animate-in {
+  animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(var(--animation-order) * 0.15s);
+}
+
+.glass-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px var(--glass-shadow);
+  border-color: var(--accent);
+}
+
+.card-icon-wrapper {
+  padding: 14px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  z-index: 2;
+}
+
+.glass-card:hover .card-icon-wrapper {
+  transform: scale(1.15) rotate(5deg);
+}
+
+.card-icon {
+  width: 28px;
+  height: 28px;
+}
+
+.card-content {
+  position: relative;
+  z-index: 2;
+  text-align: left;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin: 0 0 8px 0;
+  letter-spacing: 0.5px;
+}
+
+.card-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin: 0;
+  font-weight: 400;
+}
+
+.card-glow {
+  position: absolute;
+  top: -20%;
+  right: -20%;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.3;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  filter: blur(40px);
+}
+
+.glass-card:hover .card-glow {
+  opacity: 0.8;
+  transform: scale(1.2);
+}
+
+@keyframes slideUpFade {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .action-cards-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    gap: 16px;
+  }
+}
